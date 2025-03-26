@@ -16,13 +16,10 @@ import streamlit as st
 # Load environment variables from .env file
 load_dotenv()
 
-# Set OpenAI API key from Streamlit secrets
-os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
 
-# Check for API key
-if not os.environ.get("OPENAI_API_KEY"):
-    st.error("OpenAI API key is not set!")
-    st.stop()
+if not OPENAI_API_KEY:
+    raise ValueError("No OpenAI API key found. Please set OPENAI_API_KEY in your .env file or Streamlit secrets.")
 
 # Export system prompt at module level
 system_prompt = """
