@@ -11,13 +11,18 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.chat_message_histories import ChatMessageHistory
 
-# Validate API Key
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
-if not OPENAI_API_KEY:
-    raise ValueError("No OpenAI API key found. Please set OPENAI_API_KEY in your .env file.")
+import streamlit as st
 
-# Fine-tuned model configuration
-# FINE_TUNED_MODEL_ID = "ft:gpt-4o-mini-2024-07-18:openai-gtm:recipe-ner:9o1eNNKO"
+# Load environment variables from .env file
+load_dotenv()
+
+# Set OpenAI API key from Streamlit secrets
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+
+# Check for API key
+if not os.environ.get("OPENAI_API_KEY"):
+    st.error("OpenAI API key is not set!")
+    st.stop()
 
 # Export system prompt at module level
 system_prompt = """
