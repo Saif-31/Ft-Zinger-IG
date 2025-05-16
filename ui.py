@@ -11,7 +11,7 @@ if "chatbot" not in st.session_state:
 
 # Sidebar with New Chat button
 with st.sidebar:
-    if st.button("New Chat", use_container_width=True):
+    if st.button("New Chat", use_container_width=True, type="primary"):
         st.session_state.messages = []
         st.rerun()
 
