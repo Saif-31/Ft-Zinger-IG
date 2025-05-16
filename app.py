@@ -52,7 +52,7 @@ def create_interior_design_chatbot():
 
     # Initialize the ChatOpenAI model with fine-tuned configuration
     llm = ChatOpenAI(
-        model="ft:gpt-4o-mini-2024-07-18:personal:insta:BF6KYkse",
+        model="ft:gpt-4.1-mini-2025-04-14:personal:kitty41hello:BULmmQmy,
         temperature=0.7,
         api_key=OPENAI_API_KEY
     )
